@@ -1,10 +1,6 @@
-const express = require("express");
 const axios = require("axios");
 
-const app = express();
-const PORT = 3000;
-
-app.get("/meme", async (req, res) => {
+module.exports = async (req, res) => {
     try {
         console.log("Fetching meme from API...");
         const response = await axios.get("https://meme-api.com/gimme/dankmemes");
@@ -22,7 +18,4 @@ app.get("/meme", async (req, res) => {
         console.error("Error fetching meme:", error.message);
         res.status(500).json({ error: "Failed to fetch meme." });
     }
-});
-
-// Export for Vercel
-module.exports = app;
+};
